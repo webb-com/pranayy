@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kasarapu Pranay — Portfolio</title>
+  <meta name="description" content="Portfolio of Kasarapu Pranay — Video Editor & Reels Creator">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #0a0f1c;
+      --accent: #00ffe5;
+      --accent-2: #6366f1;
+      --card-bg: rgba(255,255,255,0.05);
+      --glass-border: rgba(255,255,255,0.1);
+      --radius: 20px;
+      --blur: 16px;
+      --max-width: 1200px;
+      --gold: linear-gradient(135deg, #FFD700, #FFB700, #FFD700);
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:'Poppins',sans-serif;
+      background:var(--bg-dark);
+      color:#f0f0f0;
+      overflow-x:hidden;
+    }
+
+    /* Parallax Background */
+    .bg-stars{
+      position:fixed;inset:0;z-index:-3;overflow:hidden;
+      background:radial-gradient(circle at 20% 20%,#222 0%,#0a0f1c 100%);
+    }
+    .star{
+      position:absolute;border-radius:50%;background:#fff;
+      opacity:.8;animation: twinkle 4s infinite ease-in-out;
+    }
+    @keyframes twinkle{0%,100%{opacity:.3}50%{opacity:1}}
+
+    /* Moon */
+    .moon{
+      position:fixed;
+      top:60px;
+      right:60px;
+      width:120px;
+      height:120px;
+      background:radial-gradient(circle at 30% 30%, #fff 0%, #ddd 40%, #bbb 70%, #999 100%);
+      border-radius:50%;
+      box-shadow:0 0 60px rgba(255,255,255,0.7);
+      z-index:-2;
+    }
+
+    /* Rain */
+    .rain{
+      position:fixed;
+      top:0;left:0;width:100%;height:100%;
+      pointer-events:none;
+      z-index:-1;
+      overflow:hidden;
+    }
+    .drop{
+      position:absolute;
+      width:2px;height:20px;
+      background:rgba(255,255,255,0.5);
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      to { transform: translateY(100vh); }
+    }
+
+    /* Header */
+    header{text-align:center;padding:90px 20px 50px}
+
+    /* Profile Image */
+    .profile-pic{
+      width:180px;height:180px;border-radius:50%;
+      border:6px solid transparent;background:var(--gold);
+      padding:5px;display:inline-block;
+      box-shadow:0 0 25px rgba(255,215,0,0.7);
+      margin-bottom:20px;
+    }
+    .profile-pic img{
+      width:100%;height:100%;
+      border-radius:50%;border:4px solid #111;
+      object-fit:cover;display:block;
+    }
+
+    header h1{
+      font-family:'Orbitron',sans-serif;
+      font-size:40px;text-transform:uppercase;
+      color:var(--accent);
+      text-shadow:0 0 15px var(--accent);
+    }
+    header p{font-size:18px;color:#aaa;margin-top:10px}
+
+    /* Container */
+    .wrap{max-width:var(--max-width);margin:0 auto;padding:20px}
+
+    /* Cards */
+    .card{
+      background:var(--card-bg);
+      border:1px solid var(--glass-border);
+      border-radius:var(--radius);
+      backdrop-filter:blur(var(--blur));
+      padding:20px;margin-bottom:30px;
+      box-shadow:0 8px 25px rgba(0,0,0,.5);
+      transition:.3s;
+    }
+    .card:hover{transform:translateY(-6px)}
+
+    .section-title{
+      font-family:'Orbitron',sans-serif;
+      font-size:22px;margin-bottom:14px;
+      color:var(--accent-2);
+      text-shadow:0 0 10px rgba(99,102,241,.6);
+    }
+
+    /* Skills */
+    .badges span{
+      display:inline-block;background:rgba(255,255,255,0.08);
+      padding:6px 12px;border-radius:999px;
+      font-size:13px;margin:4px;
+      border:1px solid var(--glass-border);
+    }
+
+    /* Grid */
+    .grid{display:grid;gap:20px}
+    .services{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+    .projects{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+
+    .service,.project{
+      background:rgba(255,255,255,0.04);
+      border-radius:12px;padding:14px;text-align:center;
+      transition:.3s;
+    }
+    .service:hover,.project:hover{background:rgba(255,255,255,0.08)}
+
+    /* Contact */
+    .cta{
+      display:block;text-align:center;
+      margin:8px 0;padding:10px 14px;
+      border-radius:10px;text-decoration:none;
+      font-weight:600;color:#fff;
+      background:linear-gradient(90deg,var(--accent-2),var(--accent));
+      box-shadow:0 0 20px rgba(0,255,200,.3);
+      transition:.3s;
+    }
+    .cta:hover{transform:scale(1.05)}
+
+    footer{text-align:center;padding:20px;color:#777;font-size:14px;margin-top:20px}
+  </style>
+</head>
+<body>
+
+  <!-- Background Elements -->
+  <div class="bg-stars" id="bg-stars"></div>
+  <div class="moon"></div>
+  <div class="rain" id="rain"></div>
+
+  <header>
+    <!-- Profile Image -->
+    <div class="profile-pic">
+      <img src="profile.png" alt="Profile Picture">
+    </div>
+    <h1>Kasarapu Pranay</h1>
+    <p>🎬 Video Editor & Reels Creator | Instagram • YouTube • Promos</p>
+  </header>
+
+  <div class="wrap">
+    <!-- About -->
+    <section class="card">
+      <h2 class="section-title">🧑 About Me</h2>
+      <p>Hi, I’m <strong>Pranay</strong>! I create scroll-stopping edits — from festival reels to YouTube shorts and promos.  
+      My goal is to make every second of your content shine ✨.</p>
+      <div class="badges">
+        <span>Reels</span><span>Festival Edits</span><span>Shorts</span><span>Promo</span>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="card">
+      <h2 class="section-title">🛠 Services</h2>
+      <div class="grid services">
+        <div class="service">🔥 Instagram Reels Editing</div>
+        <div class="service">🎉 Festival Reels</div>
+        <div class="service">📺 YouTube Shorts</div>
+        <div class="service">💼 Business Promos</div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="card">
+      <h2 class="section-title">📂 Projects</h2>
+      <div class="grid projects">
+        <div class="project">✨ Festival Montage</div>
+        <div class="project">💍 Wedding Reel</div>
+        <div class="project">🌍 Travel Edits</div>
+        <div class="project">▶ YouTube Short</div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="card">
+      <h2 class="section-title">📇 Contact</h2>
+      <a class="cta" href="https://wa.me/917207455422">💬 WhatsApp</a>
+      <a class="cta" href="https://instagram.com/bunny_goud_official">📸 Instagram</a>
+      <a class="cta" href="https://youtube.com/@bunny_creations_22">▶ YouTube</a>
+    </section>
+  </div>
+
+  <footer>
+    © 2025 Kasarapu Pranay • Crafted with 🎨 creativity & 🎞 edits
+  </footer>
+
+  <script>
+    // Generate stars
+    const stars=document.getElementById("bg-stars");
+    for(let i=0;i<80;i++){
+      const s=document.createElement("div");
+      s.className="star";
+      const size=Math.random()*2+1;
+      s.style.width=size+"px";
+      s.style.height=size+"px";
+      s.style.top=Math.random()*100+"%";
+      s.style.left=Math.random()*100+"%";
+      stars.appendChild(s);
+    }
+
+    // Generate rain
+    const rain=document.getElementById("rain");
+    for(let i=0;i<100;i++){
+      const drop=document.createElement("div");
+      drop.className="drop";
+      drop.style.left=Math.random()*100+"%";
+      drop.style.animationDuration=(Math.random()*1+0.5)+"s";
+      drop.style.animationDelay=(Math.random()*2)+"s";
+      rain.appendChild(drop);
+    }
+  </script>
+</body>
+</html>
